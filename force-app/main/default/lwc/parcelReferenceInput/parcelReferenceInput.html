@@ -1,0 +1,23 @@
+<template>
+    <div class="slds-form-element">
+        <label class="slds-form-element__label" for="text-input-reference">Reference</label>
+        <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left" data-id="divInputArea">
+            <button class="slds-button slds-button_icon slds-input__icon slds-input__icon_left" title="Clear" onclick={handleButtonClick}>
+                <span class="slds-button__icon slds-icon-text-light" aria-hidden="true">
+                    <lightning-icon icon-name="utility:product" alternative-text="Product" title="Product" size="x-small"></lightning-icon>
+                </span>
+                <span class="slds-assistive-text">Clear</span>
+            </button>
+            <input type="text" 
+                    id="text-input-reference" 
+                    class="slds-input" 
+                    aria-describedby="error-message" 
+                    pattern="[a-zA-Z0-9]+"
+                    value={value}
+                    onkeyup={handleValueChange}/>
+        </div>
+        <template if:true={showErrorText}>
+            <div class="slds-form-element__help error-color" id="error-message">You may not enter more than 50 chacters.</div>
+        </template>
+    </div>
+</template>
