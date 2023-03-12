@@ -9,20 +9,24 @@ export default class ParcelReferenceInput extends LightningElement {
     handleValueChange(event) {
         this.value = event.target.value;
         this.checkValue();
-
-        this.dispatchEvent(new CustomEvent('valuechanged', { 
-            detail: this.value 
-        }));
+        this.dispatchValueChangedEvent();
     }
 
     handleButtonClick(event) {
         getReference()
             .then(result => {
                 this.value = result.Name;
+                this.dispatchValueChangedEvent();
             })
             .catch(error => {
                 this.error = error;
             });
+    }
+
+    dispatchValueChangedEvent() {
+        this.dispatchEvent(new CustomEvent('valuechanged', { 
+            detail: this.value 
+        }));
     }
 
     checkValue() {
